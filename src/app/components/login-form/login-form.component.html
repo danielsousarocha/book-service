@@ -1,0 +1,14 @@
+<div class="form-container">
+  <form #userLogin name="userLogin" (ngSubmit)="onSubmit(userLogin)">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" name="username" #userName required autofocus ngModel />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" name="password" #password required ngModel />
+    </div>
+    <button type="submit">Login</button>
+    {{isloggedIn}}
+  </form>
+</div>
