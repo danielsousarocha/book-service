@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -8,12 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class LoginFormComponent implements OnInit {
   isloggedIn: boolean = false;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
   onSubmit(data: any): void {
     console.log(data);
     this.isloggedIn = true;
+    this.router.navigate(['/home']);
   }
 }

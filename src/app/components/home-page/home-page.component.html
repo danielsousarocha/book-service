@@ -1,0 +1,4 @@
+<p *ngIf="books.length == 0">No books found!</p>
+<ul *ngIf="books.length > 0">
+  <li *ngFor="let book of books">{{book}}</li>
+</ul>
