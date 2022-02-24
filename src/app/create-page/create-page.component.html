@@ -1,0 +1,12 @@
+<div class="form-container">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">name</label>
+      <input type="text" name="name" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }" />
+      <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+        <div *ngIf="f['name'].errors['required']">Name is required</div>
+      </div>
+    </div>
+    <button type="submit">Create</button>
+  </form>
+</div>
