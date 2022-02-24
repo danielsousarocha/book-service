@@ -1,14 +1,20 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-4 mt-5">
-      <form #userLogin name="userLogin" (ngSubmit)="onSubmit(userLogin)" class="bg-light p-3">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="bg-light p-3">
         <div class="mb-2">
           <label for="username" class="form-label">Username</label>
-          <input type="text" name="username" #userName required class="form-control" />
+          <input type="text" name="username" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" class="form-control" />
+          <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+            <div *ngIf="f['username'].errors['required']">Username is required</div>
+          </div>
         </div>
         <div class="mb-2">
           <label for="password" class="form-label">Password</label>
-          <input type="password" name="password" #password class="form-control" />
+          <input type="password" name="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" class="form-control" />
+          <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+            <div *ngIf="f['password'].errors['required']">Password is required</div>
+          </div>
         </div>
         <div class="text-end">
           <button type="submit" class="btn btn-primary">Login</button>

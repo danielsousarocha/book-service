@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-form',
@@ -7,14 +8,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-form.component.css'],
 })
 export class LoginFormComponent implements OnInit {
+  registerForm!: FormGroup;
   isloggedIn: boolean = false;
+  submitted: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private formBuilder: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.registerForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+  }
 
-  onSubmit(data: any): void {
-    console.log(data);
+  get f() {
+    return this.registerForm.controls;
+  }
+
+  onSubmit(): void {
+    this.submitted = true;
+
+    if (this.registerForm.invalid) return;
+
     this.isloggedIn = true;
     this.router.navigate(['/home']);
   }
