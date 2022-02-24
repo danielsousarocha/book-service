@@ -1,4 +1,13 @@
-<p *ngIf="books.length == 0">No books found!</p>
-<ul *ngIf="books.length > 0">
-  <li *ngFor="let book of books">{{book}}</li>
-</ul>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <p *ngIf="books.length == 0" class="alert alert-warning">No books found!</p>
+      <div *ngIf="books.length > 0">
+        <h3>List of books found</h3>
+        <ul>
+          <li *ngFor="let book of books">{{book}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
