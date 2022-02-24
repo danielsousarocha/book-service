@@ -12,8 +12,8 @@ export class HomePageComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.http
-      .get('https://publishing-house-service.herokuapp.com/api/v1/books/')
-      .subscribe((data) => (this.books = data));
+    this.http.get('/api/v1/books/').subscribe((data) => {
+      this.books = data;
+    });
   }
 }

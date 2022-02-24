@@ -1,14 +1,44 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-4">
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <div class="mb-2">
+        <div class="mb-3">
           <label for="name" class="form-label">Name</label>
           <input type="text" name="name" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }" class="form-control" />
           <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
             <div *ngIf="f['name'].errors['required']">Name is required</div>
+            <div *ngIf="f['name'].errors['pattern']">Name can only contain letters</div>
           </div>
         </div>
+
+        <div class="mb-3">
+          <label for="year" class="form-label">Year</label>
+          <input type="number" name="year" formControlName="year" [ngClass]="{ 'is-invalid': submitted && f['year'].errors }" class="form-control" />
+          <div *ngIf="submitted && f['year'].errors" class="invalid-feedback">
+            <div *ngIf="f['year'].errors['required']">Year is required</div>
+            <div *ngIf="f['year'].errors['pattern']">Year must have four digits</div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="authors" class="form-label">Authors</label>
+          <input type="text" name="authors" formControlName="authors" [ngClass]="{ 'is-invalid': submitted && f['authors'].errors }" class="form-control" />
+          <div *ngIf="submitted && f['authors'].errors" class="invalid-feedback">
+            <div *ngIf="f['authors'].errors['required']">Authors is required</div>
+            <div *ngIf="f['authors'].errors['pattern']">Each author can only contain letters e must be separated by a comma</div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="summary" class="form-label">Summary</label>
+          <textarea type="text" name="summary" formControlName="summary" [ngClass]="{ 'is-invalid': submitted && f['summary'].errors }" class="form-control"></textarea>
+          <div *ngIf="submitted && f['summary'].errors" class="invalid-feedback">
+            <div *ngIf="f['summary'].errors['required']">Summary is required</div>
+          </div>
+        </div>
+
+        <p *ngIf="message" class="alert alert-info">{{message}}</p>
+
         <div class="text-end">
           <button type="submit" class="btn btn-success">Create</button>
         </div>
