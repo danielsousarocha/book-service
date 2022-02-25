@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
   { path: 'home', component: HomePageComponent },
   { path: 'create', component: CreatePageComponent },
+  { path: 'edit/:id', component: CreatePageComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
 

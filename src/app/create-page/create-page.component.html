@@ -40,7 +40,7 @@
         <p *ngIf="message" class="alert alert-info">{{message}}</p>
 
         <div class="text-end">
-          <button type="submit" class="btn btn-success">Create</button>
+          <button type="submit" class="btn btn-primary">{{pageMode === 'create' ? 'Create' : 'Update'}}</button>
         </div>
       </form>
     </div>

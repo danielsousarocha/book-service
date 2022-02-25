@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -9,13 +10,18 @@ import { HttpClient } from '@angular/common/http';
 export class HomePageComponent implements OnInit {
   books: any = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient) {}
   message: string = '';
 
   ngOnInit(): void {
     this.http.get('/api/v1/books/').subscribe((data) => {
       this.books = data;
     });
+  }
+
+  editBook(bookId: number): void {
+    console.log(bookId);
+    this.router.navigate(['/edit', bookId]);
   }
 
   deleteBook(bookId: number): void {

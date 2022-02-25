@@ -21,6 +21,7 @@ export class LoginFormComponent implements OnInit {
     });
   }
 
+  // Helper for easier access to form fields
   get f() {
     return this.registerForm.controls;
   }
