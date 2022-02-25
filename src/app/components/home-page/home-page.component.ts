@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { LoginStatusService } from '../../services/login-status.service';
 
 @Component({
   selector: 'app-home-page',
@@ -10,10 +11,19 @@ import { Router } from '@angular/router';
 export class HomePageComponent implements OnInit {
   books: any = [];
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(
+    private loginStatus: LoginStatusService,
+    private router: Router,
+    private http: HttpClient
+  ) {}
   message: string = '';
 
   ngOnInit(): void {
+    if (!this.loginStatus.getStatus()) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
     this.http.get('/api/v1/books/').subscribe((data) => {
       this.books = data;
     });
@@ -24,7 +34,6 @@ export class HomePageComponent implements OnInit {
   }
 
   editBook(bookId: number): void {
-    console.log(bookId);
     this.router.navigate(['/edit', bookId]);
   }
 

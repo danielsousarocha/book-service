@@ -10,6 +10,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { CreatePageComponent } from './create-page/create-page.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BookSearchComponent } from './components/book-search/book-search.component';
+import { LoginStatusService } from './services/login-status.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
@@ -35,7 +36,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [LoginStatusService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

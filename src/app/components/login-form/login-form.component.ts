@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoginStatusService } from '../../services/login-status.service';
 
 @Component({
   selector: 'app-login-form',
@@ -8,13 +9,24 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login-form.component.css'],
 })
 export class LoginFormComponent implements OnInit {
+  isLoggedIn!: boolean;
   registerForm!: FormGroup;
-  isloggedIn: boolean = false;
   submitted: boolean = false;
 
-  constructor(private router: Router, private formBuilder: FormBuilder) {}
+  constructor(
+    private loginStatus: LoginStatusService,
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
+    this.isLoggedIn = this.loginStatus.getStatus();
+
+    if (this.isLoggedIn) {
+      this.router.navigate(['/home']);
+      return;
+    }
+
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -31,7 +43,7 @@ export class LoginFormComponent implements OnInit {
 
     if (this.registerForm.invalid) return;
 
-    this.isloggedIn = true;
+    this.loginStatus.setStatus(true);
     this.router.navigate(['/home']);
   }
 }

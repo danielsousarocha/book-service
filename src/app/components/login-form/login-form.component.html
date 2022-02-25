@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="!isLoggedIn" class="container">
   <div class="row justify-content-center">
     <div class="col-4 mt-5">
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="bg-light p-3">

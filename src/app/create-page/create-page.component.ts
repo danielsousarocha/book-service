@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { LoginStatusService } from '../services/login-status.service';
 
 @Component({
   selector: 'app-create-page',
@@ -14,15 +15,24 @@ export class CreatePageComponent implements OnInit {
   message: string = '';
   pageMode: string = 'create';
   bookId: any;
+  isLoggedIn!: boolean;
 
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private loginStatus: LoginStatusService
   ) {}
 
   ngOnInit(): void {
+    this.isLoggedIn = this.loginStatus.getStatus();
+
+    if (!this.isLoggedIn) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
     this.registerForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       year: ['', [Validators.required, Validators.pattern('[0-9]{4}')]],
