@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { CreatePageComponent } from './create-page/create-page.component';
+import { HeaderComponent } from './components/header/header.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
     LoginFormComponent,
     HomePageComponent,
     CreatePageComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
