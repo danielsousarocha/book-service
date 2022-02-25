@@ -1,0 +1,8 @@
+<form class="input-group mb-3" [formGroup]="searchForm" (ngSubmit)="onSearch()">
+  <input type="text" name="name" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }" class="form-control" placeholder="Search by name" />
+  <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Button</button>
+  <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+    <div *ngIf="f['name'].errors['required']">Name is required</div>
+    <div *ngIf="f['name'].errors['pattern']">Name can only contain letters</div>
+  </div>
+</form>

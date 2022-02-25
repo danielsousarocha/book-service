@@ -9,6 +9,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { CreatePageComponent } from './create-page/create-page.component';
 import { HeaderComponent } from './components/header/header.component';
+import { BookSearchComponent } from './components/book-search/book-search.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
     HomePageComponent,
     CreatePageComponent,
     HeaderComponent,
+    BookSearchComponent,
   ],
   imports: [
     BrowserModule,

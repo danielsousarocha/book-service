@@ -19,6 +19,10 @@ export class HomePageComponent implements OnInit {
     });
   }
 
+  onBookSearch(booksFound: any): void {
+    this.books = booksFound;
+  }
+
   editBook(bookId: number): void {
     console.log(bookId);
     this.router.navigate(['/edit', bookId]);

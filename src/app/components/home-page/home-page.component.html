@@ -1,6 +1,9 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-10">
+      <app-book-search (bookSearch)="onBookSearch($event)"></app-book-search>
+    </div>
+    <div class="col-10">
       <div *ngIf="message" class="alert alert-info">{{message}}</div>
       <p *ngIf="books.length == 0" class="alert alert-warning">No books found!</p>
       <div *ngIf="books.length > 0">
